@@ -1,0 +1,104 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(83, 95, 255, 10%);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0%;
+
+}
+
+.card {
+    border: solid rgb(0, 0, 0,0.30) 2px;
+    height: 72vh;
+    width: 22vw;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.966);
+    overflow-y: auto;
+
+
+
+}
+
+#image {
+    height: 45%;
+    width: 100%;
+    /* object-fit: cover; */
+    border-radius: 20px;
+    margin: 0;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.catg {
+    padding: 8px;
+    margin: 0px;
+}
+
+#bob1,
+#bob2 {
+    border: solid rgba(245, 5, 5, 0.4) 1px;
+    text-align: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 5px;
+    color: rgb(190, 182, 182.0.40);
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 70%;
+}
+
+h2 {
+    font-family: "Fredericka the Great", serif;
+    font-weight: 900;
+    font-style: normal;
+    padding: 8px;
+    margin: 0px;
+    height: auto;
+    width: auto;
+}
+
+.text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-size:100%;
+    font-weight: 600;
+    font-style: normal;
+    padding: 8px;
+    margin: 5px;
+}
+
+.button {
+    display: flex;
+    justify-content:center;
+    margin-bottom: 10px;
+    margin-top:10%;
+
+}
+
+.button-style {
+    border: solid black 0px;
+    background-color: rgb(130, 224, 224,0.50);
+    color: rgb(18, 148, 177);
+    border-radius: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    width: 110px;
+    padding: 8px;
+    font-size: 64%;
+    font-weight: 800;
+}
