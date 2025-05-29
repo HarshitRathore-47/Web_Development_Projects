@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    Library Management System
+  </header>
+  <main>
+    <nav class="tabs" role="tablist" aria-label="Library Management Tabs">
+      <button role="tab" aria-selected="true" class="active" id="books-tab" aria-controls="books">Books</button>
+      <button role="tab" aria-selected="false" id="members-tab" aria-controls="members">Members</button>
+      <button role="tab" aria-selected="false" id="issue-tab" aria-controls="issue">Issue Book</button>
+      <button role="tab" aria-selected="false" id="return-tab" aria-controls="return">Return Book</button>
+      <button role="tab" aria-selected="false" id="issued-list-tab" aria-controls="issued-list">Issued Books</button>
+    </nav>
+    <!-- Books Management -->
+    <section id="books" class="tab-content active" role="tabpanel" aria-labelledby="books-tab">
+      <h2>Books Management</h2>
+      <div class="flex-row">
+        <form id="book-form" class="card" aria-label="Add or Edit Book">
+          <h3 id="book-form-title">Add New Book</h3>
+          <input type="hidden" id="book-id" />
+          <label for="book-title">Title <sup>*</sup></label>
+          <input type="text" id="book-title" placeholder="Book Title" required />
+          <label for="book-author">Author <sup>*</sup></label>
+          <input type="text" id="book-author" placeholder="Author Name" required />
+          <label for="book-isbn">ISBN <sup>*</sup></label>
+          <input type="text" id="book-isbn" placeholder="e.g. 978-3-16-148410-0"
+            pattern="^(97(8|9))?\-?\d{1,5}\-?\d{1,7}\-?\d{1,7}\-?[\dX]$"
+            title="Enter valid ISBN-10 or ISBN-13, digits and optional dashes, e.g. 978-3-16-148410-0" required />
+          <label for="book-published">Published Year</label>
+          <input type="number" id="book-published" placeholder="e.g. 2020" min="1000" max="9999" />
+          <button type="submit" id="book-submit-btn">Add Book</button>
+          <button type="button" id="book-cancel-btn" style="display:none; margin-top: 0.5rem; background: #777;">Cancel
+            Edit</button>
+        </form>
+        <div class="card" style="flex:1 1 620px; min-width: 320px;">
+          <label for="book-search" style="font-weight:600;">Search Books</label>
+          <input type="search" id="book-search" class="search-input" placeholder="Search by title, author or ISBN"
+            aria-label="Search Books" />
+          <div style="overflow-x:auto;">
+            <table id="books-table" aria-describedby="books-list-desc">
+              <caption id="books-list-desc" class="sr-only">List of library books</caption>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>ISBN</th>
+                  <th>Published</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dynamic rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Members Management -->
+    <section id="members" class="tab-content" role="tabpanel" aria-labelledby="members-tab">
+      <h2>Members Management</h2>
+      <div class="flex-row">
+        <form id="member-form" class="card" aria-label="Add or Edit Member">
+          <h3 id="member-form-title">Add New Member</h3>
+          <input type="hidden" id="member-id" />
+          <label for="member-name">Member Name <sup>*</sup></label>
+          <input type="text" id="member-name" placeholder="Full Name" required />
+          <label for="member-email">Email <sup>*</sup></label>
+          <input type="email" id="member-email" placeholder="Email Address" required />
+          <label for="member-phone">Phone Number</label>
+          <input type="tel" id="member-phone" placeholder="Phone Number" />
+          <button type="submit" id="member-submit-btn">Add Member</button>
+          <button type="button" id="member-cancel-btn"
+            style="display:none; margin-top: 0.5rem; background: #777;">Cancel Edit</button>
+        </form>
+        <div class="card" style="flex:1 1 620px; min-width: 320px;">
+          <label for="member-search" style="font-weight:600;">Search Members</label>
+          <input type="search" id="member-search" class="search-input" placeholder="Search by name or email"
+            aria-label="Search Members" />
+          <div style="overflow-x:auto;">
+            <table id="members-table" aria-describedby="members-list-desc">
+              <caption id="members-list-desc" class="sr-only">List of library members</caption>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dynamic rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Issue Book -->
+    <section id="issue" class="tab-content" role="tabpanel" aria-labelledby="issue-tab">
+      <h2>Issue Book</h2>
+      <form id="issue-form" class="card" aria-label="Issue Book to Member" style="max-width: 480px; margin: auto;">
+        <label for="issue-member">Select Member <sup>*</sup></label>
+        <select id="issue-member" required aria-required="true">
+          <option value="">-- Select Member --</option>
+        </select>
+        <label for="issue-book">Select Book <sup>*</sup></label>
+        <select id="issue-book" required aria-required="true">
+          <option value="">-- Select Book --</option>
+        </select>
+        <button type="submit" id="issue-submit-btn" style="margin-top: 1rem;">Issue Book</button>
+      </form>
+    </section>
+
+    <!-- Return Book -->
+    <section id="return" class="tab-content" role="tabpanel" aria-labelledby="return-tab">
+      <h2>Return Book</h2>
+      <form id="return-form" class="card" aria-label="Return Issued Book" style="max-width: 480px; margin: auto;">
+        <label for="return-member">Select Member <sup>*</sup></label>
+        <select id="return-member" required aria-required="true">
+          <option value="">-- Select Member --</option>
+        </select>
+        <label for="return-book">Select Issued Book <sup>*</sup></label>
+        <select id="return-book" required aria-required="true" disabled>
+          <option value="">-- Select Book --</option>
+        </select>
+        <button type="submit" id="return-submit-btn" style="margin-top: 1rem;" disabled>Return Book</button>
+      </form>
+    </section>
+
+    <!-- Issued Books List -->
+    <section id="issued-list" class="tab-content" role="tabpanel" aria-labelledby="issued-list-tab">
+      <h2>Issued Books</h2>
+      <div style="overflow-x:auto;">
+        <table id="issued-table" class="issued-list-table" aria-describedby="issued-list-desc"
+          style="min-width: 600px;">
+          <caption id="issued-list-desc" class="sr-only">List of currently issued books</caption>
+          <thead>
+            <tr>
+              <th>Book Title</th>
+              <th>ISBN</th>
+              <th>Member</th>
+              <th>Member Email</th>
+              <th>Issue Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <div id="message-container" aria-live="assertive" role="alert" style="max-width: 1200px; margin: 1rem auto;"></div>
+    
+  </main>
+  <footer>
+  <div class="footer-container">
+    <p>© 2025 Library Management System. All rights reserved.</p>
+    <p>Designed with ❤ by Harshit Rathore</p>
+  </div>
+</footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+```
